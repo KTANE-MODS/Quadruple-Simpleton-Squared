@@ -103,9 +103,9 @@ public class QuadrupleSimpletonSquared : MonoBehaviour {
         yield return null;
         
 
-        Match match = Regex.Match(Command, @"^([A-D][1-4],?\s?)+$", RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
+        Match match = Regex.Match(Command, @"^([A-D][1-4]((,\s)|(,))?)+$", RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
 
-        if (match.Success) 
+        if (match.Success && !Command.EndsWith(",")) 
         {
             string[] coordinates = match.Groups[0].Value.Split(',').Select(coor => coor.Trim()).ToArray();
 
